@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" manifest="cache.manifest">
+<head>
+  <meta charset="utf-8">
+  <title>HTML5 헤럴드</title>
+  <link rel="stylesheet" href="css/styles.css?v=1.0"/>
+  <script src="js/modernizr-1.7.min.js"></script>
+
+</head>
+<body>
+<header>
+  <hgroup>
+    <h1><a href="index.html">HTML5 <img src="images/logo.png" alt=""> 헤럴드</a></h1>
+    <h2>HTML5 &amp; CSS3를 이용해 옛 신문 스타일을 재현하다</h2>
+  </hgroup>
+  <nav>
+    <ul>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="register.html">등록</a></li>
+    </ul>
+  </nav>
+  <p id="volume">Vol. MMXI</p>
+  <p id="issue"><time datetime="1904-06-04" pubdate>June 4, 1904</time></p>
+</header>
+
+  <form id="register" method="post">
+  <hgroup>
+    <h1>등록해 주세요!</h1>
+    <h2>이 멋진 신문을 구독하고 싶습니다.</h2>
+  </hgroup>
+
+
+  <ul>
+    <li>
+      <label for="name">제 이름은요:</label>
+      <input type="text" id="name" name="name" required>
+    </li>
+    <li>
+      <label for="email">제 이메일 주소는요:</label>
+      <input type="email" id="email" name="email" required>
+    </li>
+    	<li>          <label for="rememberme">이 컴퓨터에서 제 정보를 기억하도록 합니다</label>
+          <input type="checkbox"  value="yes"  id="rememberme"> 
+	</li>
+    <li>
+      <label for="url">제 웹사이트 주소는요:</label>
+      <input type="url" id="url" name="url" placeholder="http://example.com">
+    </li>
+    <li> 
+      <label for="password">비밀번호는 이것이 좋겠어요:</label>
+      <p>(최소 6자, 공백없이)</p>
+      <input type="password" id="password" name="password" required pattern="\S{6,}">
+    </li>
+    <li>
+      <label for="rating">제 HTML5에 대한 지식 수준은요, 1부터 10중에서:</label>
+      <input min="1" max="10" id="rating" name="rating" type="range">
+    </li>
+    <li>
+      <label for="startdate">이 날짜부터 구독하고 싶어요:</label>
+      <input type="date" id="startdate" name="startdate" min="1904-03-17" max="1904-05-17" required>
+    </li>
+    <li>
+      <label for="quantity"><cite>HTML5 헤럴드</cite>를 <input type="number" name="quantity" id="quantity" min="1" max="10" value="1">부 받고 싶습니다.</label>
+    </li>
+    <li>
+      <label for="upsell"><cite>CSS3 이야기</cite>에도 함께 등록하겠습니다.</label>
+      <input id="upsell" name="upsell" type="checkbox">
+    </li>
+
+  </ul>
+  <input type="submit" id="register-submit" value="입력 정보 보내기"/>
+</form>
+    <footer>
+    <small>&copy; SitePoint </small>
+    <p><a href="http://www.sitepoint.com"><img src="images/logo-sp.gif" alt="SitePoint" width="74" height="20"></a></p>
+</footer>
+<script>
+if (!Modernizr.input.placeholder) {
+	$("input[placeholder], textarea[placeholder]").each(function(){
+		if ($(this).val() == "") {
+			$(this).val($(this).attr("placeholder"));
+			$(this).focus(function(){
+				if ($(this).val() == $(this).attr("placeholder")) {
+					$(this).val("");
+					$(this).removeClass('placeholder');
+				}
+			});
+			$(this).blur(function(){
+				if ($(this).val() == "") {
+					$(this).val($(this).attr("placeholder"));
+					$(this).addClass('placeholder');
+				}
+			});
+		}
+	});
+	
+	$('form').submit(function(){
+		// first do all the checking for required element and form validation. 
+		// Only remove placeholders before final submission
+		var placeheld = $(this).find('[placeholder]');
+		for (var i = 0; i < placeheld.length; i++) {
+			if (($(placeheld[i]).val() == $(placeheld[i]).attr('placeholder'))) {
+				// if not required, set value to empty before submitting
+				$(placeheld[i]).attr('value', '');
+			}
+		}
+		
+	});
+}
+		</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/rememberMe.js"></script>
+
+</body>
+</html>
